@@ -25,11 +25,42 @@
         </svg>
         <section>
             <div>
-                <h2>Test Audio</h2>
+                <h2>Below is a Test Audio</h2>
             </div>
             <span>
                 <audio src="/videos/testAudio.wav" controls></audio>
             </span>
+        </section>
+        <section>
+            <h2>Making Grilled Cheese</h2>
+            <ol>
+                <li>Butter the Toast</li>
+                <li>Heat Skillet</li>
+                <li>Add Cheese</li>
+                <li>Brown the Toast</li>
+                <li>Serve</li>
+            </ol>
+            <form action="">
+                <label for="bread">Select type of bread</label>
+                <select name="bread" id="bread">
+                    <optgroup label="Healthy">
+                        <option value="wheat">Wheat</option>
+                        <option value="Sourdough">Sourdough</option>
+                    </optgroup>
+                    <optgroup label="Unhealthy">
+                        <option value="white">White</option>
+                    </optgroup>
+                </select>
+                <fieldset>
+                    <legend>Select type of Cheese</legend>
+
+                    <label for="chedder">Chedder</label>
+                    <input type="radio" name="chedder" id="chedder">
+
+                    <label for="provolone">Provolone</label>
+                    <input type="radio" name="provolone" id="provolone">
+                </fieldset>
+            </form>
         </section>
     </main>
 </body>
