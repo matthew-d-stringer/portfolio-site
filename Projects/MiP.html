@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiP</title>
+</head>
+<body>
+    <nav>
+        <a href="/home.html">Matthew Stringer</a>
+        <ul>
+            <li><a href="/home.html#AboutMe">About Me</a></li>
+            <li><a href="/home.html#Projects">Projects</a></li>
+            <li><a href="/ContactMe.html">Contact Me</a></li>
+            <li><a href="#">Resume</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Mobile Inverted Pendulum (MiP)</h1>
+
+        <h2>Dynamics and Derivation</h2>
+        <figure>
+            <img 
+                src="/images/MipSchematic.png" 
+                alt="Diagram of Mobile Inverted Pendulum, 
+                    where the distance from the center of mass of the wheel to the 
+                    center of mass of the rod pendulum is denoted l, 
+                    the angle that the wheel has turned is denoted phi,
+                    and the counter-clockwise angle the pendulum is from vertical 
+                    is dentoed theta."
+            >
+            <figcaption>
+                Schematic of MiP (source: Numerical Renaissance by Dr.Thomas Bewley)
+            </figcaption>
+        </figure>
+        <p>
+            Using the schematic to the right, the dynamics of the system can be derived. 
+            There are multiple methods of accomplishing this, including using Newton's Laws of motion and using Lagrange's Equations. 
+        </p>
+        <p>
+            The following is the completed derivation:
+        </p>
+        <picture>
+            <img width="600" src="/images/MipDynamcis.png" alt="Equation of dynamcis of MiP">
+        </picture>
+
+        <h2>Simulation and Animation</h2>
+        <h3>Numerical Integration in Matlab using Runge-Kutta 4</h3>
+        <p>
+            We begin by entering these dynamics into <em>Matlab</em> in the form of a 
+            function <code>f(x,u)</code>, where 
+        </p>
+        <math display="block" style="display:block math;">
+            <mrow>
+                <mover>
+                    <mi>x</mi>
+                    <mo>˙</mo>
+                </mover>
+                <mo>=</mo>
+                <mi>f</mi>
+                <mo form="prefix">(</mo>
+                <mi>x</mi>
+                <mo separator="true">,</mo>
+                <mi>u</mi>
+                <mo form="postfix">)</mo>
+            </mrow>
+        </math>       
+        <p>
+            this results in a function definition as follows
+        </p>
+        <pre>
+            function xDot = f(o,x, voltage) 
+            % F  Function for differential equation x' = f(x) of the system
+            %   xDot = o.F(x,voltage) determines derivative of x from current state and voltage
+            % 
+            %   From Numerical Renaissance (derived from nonlinear MiP model),
+            %   [K2*Ct, K1; K3, K2*Ct] x'' = [K2*St*(theta')^2 + torque; K4*St - torque]
+
+                St = sin(x(1));
+                Ct = cos(x(1));
+
+                maxVolts = 6;
+                voltage = min(max(voltage, -maxVolts),maxVolts);
+
+                torque = o.KtR*voltage - o.KtR * o.Kv * x(4);
+                acc = [
+                    o.K2*Ct  o.K1
+                    o.K3     o.K2*Ct
+                ]\[
+                    o.K2*St*x(3)^2 + torque
+                    o.K4*St - torque
+                ];
+
+                xDot = [
+                    x(3:4)
+                    acc
+                ];
+            end
+        </pre>
+        <p>
+            Finally we can use this function in combination with RK-4 to simulate the MiP over a fixed period of time
+        </p>
+        <pre>
+            function newX = update(o, x, u, dt) 
+            % UPDATE Uses RK-4 to determine next state x from current state x and input u
+            %   dt seconds ahead from now.
+                k1 = o.f(x, u);
+                k2 = o.f(x + k1 * dt/2, u);
+                k3 = o.f(x + k2 * dt/2, u);
+                k4 = o.f(x + k3 * dt, u);
+                newX = x + (k1 + 2*k2 + 2*k3 + k4)/6 * dt;
+            end
+        </pre>
+        <aside>
+            Note that this code exists within a class containing the simulation.
+        </aside>
+        <p>
+            You can view the final simulation below.
+        </p>
+        <video width="400" autoplay loop>
+            <source src="/videos/MiPAnimation.avi">
+            <source src="/videos/MiPAnimation.mp4">
+        </video>
+
+    </main>
+    <footer>
+        <a href="/ContactMe.html">contact me</a>
+    </footer>
+</body>
+</html>
