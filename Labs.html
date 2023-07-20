@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labs</title>
     <link rel="stylesheet" href="/home.css">
-
+    <script>
+        window.addEventListener("load", function() {
+            const canvas = document.querySelector("canvas");
+            const context = canvas.getContext("2d");
+            context.fillStyle = "green";
+            context.fillRect(10,10,100,100);
+        })
+    </script>
 </head>
 <body>
     <nav>
@@ -108,11 +115,5 @@
     <footer>
         <a href="/ContactMe.html">contact me</a>
     </footer>
-    <script>
-        const canvas = document.querySelector("canvas");
-        const context = canvas.getContext("2d");
-        context.fillStyle = "green";
-        context.fillRect(10,10,100,100);
-    </script>
 </body>
 </html>
