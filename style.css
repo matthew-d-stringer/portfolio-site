@@ -1,0 +1,137 @@
+/* Pulling up vars from Utopia */
+
+:root {
+    --grid-max-width: 77.50rem;
+    --grid-gutter: var(--space-s-l, clamp(1.13rem, calc(0.65rem + 2.39vw), 2.50rem));
+    --grid-columns: 12;
+
+    --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+    --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
+    --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+    --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+    --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
+    --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+    --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+    --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.82rem);
+
+    --grid-max-width: 80rem;
+    --grid-gutter: var(--space-s-m, clamp(1.13rem, calc(0.69rem + 2.18vw), 1.88rem));
+    --grid-columns: 12;
+}
+
+/* Setting body as the grid */
+body {
+  display: grid;
+  gap: var(--grid-gutter);
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Setting main, navbar and footer as container */
+body > div {
+  max-width: var(--grid-max-width);
+  padding-inline: var(--grid-gutter);
+  margin-inline: auto;
+}
+
+/* Positioning and setting layout of nav */
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+
+    position: sticky;
+    top: 0px;
+    right: 0px;
+    background-color: #D9D9D9;
+    width: 100%;
+
+    /* padding: 0.5em 0.75em; */
+    padding: 0 0.75em;
+}
+
+/* Setting everything in nav to be horizontal */
+nav * {
+    display: inline-block;
+}
+
+/* Normalize link text */
+nav a {
+    font-style: normal;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.799);
+    padding: 0.5em 0.3em;
+}
+
+nav > ul a:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Set margin and font size for main link */
+nav > a {
+    font-size: var(--step-0);
+}
+
+nav > ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav > ul > li {
+    font-size: var(--step-0);
+}
+
+#resumeLink {
+    color: rgba(0, 0, 0, 0.72);
+}
+
+main {
+    padding: 1em 0 0 0;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #D9D9D9;
+    margin-top: 2em;
+    padding: 1em 0;
+    font-size: var(--step--1);
+}
+
+h1 {
+    font-size: var(--step-3)
+}
+
+h2 {
+    font-size: var(--step-2)
+}
+
+h3 {
+    font-size: var(--step-1)
+}
+
+p {
+    font-size: var(--step-0);
+}
+
+a {
+    font-style: normal;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.72);
+}
+
+a.btn {
+    font-style: normal;
+    text-decoration: none;
+    color: black;
+    background-color: #D9D9D9;
+    padding: 0.5em 6em;
+}
+
+a.btn:hover {
+    background-color: #949393;
+}

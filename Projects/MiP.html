@@ -1,79 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiP</title>
-     <script>
-        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
-        posthog.init('phc_xwaLrYB2tgQU6gs09mXvg6EtvyWESV6GfB0CEmhn3SH', { api_host: 'https://app.posthog.com' })
-    </script>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-    <nav>
-        <a href="/home.html">Matthew Stringer</a>
-        <ul>
-            <li><a href="/home.html#AboutMe">About Me</a></li>
-            <li><a href="/home.html#Projects">Projects</a></li>
-            <li><a href="/ContactMe.html">Contact Me</a></li>
-            <li><a href="/Resume.pdf">Resume</a></li>
-            <li><a href="/Labs.html">Labs (Temporary)</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h1>Mobile Inverted Pendulum (MiP)</h1>
 
-        <h2>Dynamics and Derivation</h2>
-        <figure>
-            <img 
-                src="/images/MipSchematic.png" 
-                alt="Diagram of Mobile Inverted Pendulum, 
+<body>
+    <div>
+        <nav>
+            <a href="/home.html">Matthew Stringer</a>
+            <ul>
+                <li><a href="/home.html#AboutMe">About Me</a></li>
+                <li><a href="/home.html#Projects">Projects</a></li>
+                <li><a href="/ContactMe.html">Contact Me</a></li>
+                <li><a href="/Resume.pdf">Resume</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>Mobile Inverted Pendulum (MiP)</h1>
+
+            <h2>Dynamics and Derivation</h2>
+            <figure>
+                <img src="/images/MipSchematic.png" alt="Diagram of Mobile Inverted Pendulum, 
                     where the distance from the center of mass of the wheel to the 
                     center of mass of the rod pendulum is denoted l, 
                     the angle that the wheel has turned is denoted phi,
                     and the counter-clockwise angle the pendulum is from vertical 
-                    is dentoed theta."
-            >
-            <figcaption>
-                Schematic of MiP (source: Numerical Renaissance by Dr.Thomas Bewley)
-            </figcaption>
-        </figure>
-        <p>
-            Using the schematic to the right, the dynamics of the system can be derived. 
-            There are multiple methods of accomplishing this, including using Newton's Laws of motion and using Lagrange's Equations. 
-        </p>
-        <p>
-            The following is the completed derivation:
-        </p>
-        <picture>
-            <img width="600" src="/images/MipDynamcis.png" alt="Equation of dynamcis of MiP">
-        </picture>
+                    is dentoed theta.">
+                <figcaption>
+                    Schematic of MiP (source: Numerical Renaissance by Dr.Thomas Bewley)
+                </figcaption>
+            </figure>
+            <p>
+                Using the schematic to the right, the dynamics of the system can be derived.
+                There are multiple methods of accomplishing this, including using Newton's Laws of motion and using
+                Lagrange's Equations.
+            </p>
+            <p>
+                The following is the completed derivation:
+            </p>
+            <picture>
+                <img width="600" src="/images/MipDynamcis.png" alt="Equation of dynamcis of MiP">
+            </picture>
 
-        <h2>Simulation and Animation</h2>
-        <h3>Numerical Integration in Matlab using Runge-Kutta 4</h3>
-        <p>
-            We begin by entering these dynamics into <em>Matlab</em> in the form of a 
-            function <code>f(x,u)</code>, where 
-        </p>
-        <math display="block" style="display:block math;">
-            <mrow>
-                <mover>
+            <h2>Simulation and Animation</h2>
+            <h3>Numerical Integration in Matlab using Runge-Kutta 4</h3>
+            <p>
+                We begin by entering these dynamics into <em>Matlab</em> in the form of a
+                function <code>f(x,u)</code>, where
+            </p>
+            <math display="block" style="display:block math;">
+                <mrow>
+                    <mover>
+                        <mi>x</mi>
+                        <mo>˙</mo>
+                    </mover>
+                    <mo>=</mo>
+                    <mi>f</mi>
+                    <mo form="prefix">(</mo>
                     <mi>x</mi>
-                    <mo>˙</mo>
-                </mover>
-                <mo>=</mo>
-                <mi>f</mi>
-                <mo form="prefix">(</mo>
-                <mi>x</mi>
-                <mo separator="true">,</mo>
-                <mi>u</mi>
-                <mo form="postfix">)</mo>
-            </mrow>
-        </math>       
-        <p>
-            this results in a function definition as follows
-        </p>
-        <pre>
+                    <mo separator="true">,</mo>
+                    <mi>u</mi>
+                    <mo form="postfix">)</mo>
+                </mrow>
+            </math>
+            <p>
+                this results in a function definition as follows
+            </p>
+            <pre>
             function xDot = f(o,x, voltage) 
             % F  Function for differential equation x' = f(x) of the system
             %   xDot = o.F(x,voltage) determines derivative of x from current state and voltage
@@ -102,10 +99,11 @@
                 ];
             end
         </pre>
-        <p>
-            Finally we can use this function in combination with RK-4 to simulate the MiP over a fixed period of time
-        </p>
-        <pre>
+            <p>
+                Finally we can use this function in combination with RK-4 to simulate the MiP over a fixed period of
+                time
+            </p>
+            <pre>
             function newX = update(o, x, u, dt) 
             % UPDATE Uses RK-4 to determine next state x from current state x and input u
             %   dt seconds ahead from now.
@@ -116,20 +114,22 @@
                 newX = x + (k1 + 2*k2 + 2*k3 + k4)/6 * dt;
             end
         </pre>
-        <aside>
-            Note that this code exists within a class containing the simulation.
-        </aside>
-        <p>
-            You can view the final simulation below.
-        </p>
-        <video width="400" autoplay loop>
-            <source src="/videos/MiPAnimation.avi">
-            <source src="/videos/MiPAnimation.mp4">
-        </video>
+            <aside>
+                Note that this code exists within a class containing the simulation.
+            </aside>
+            <p>
+                You can view the final simulation below.
+            </p>
+            <video width="400" autoplay loop>
+                <source src="/videos/MiPAnimation.avi">
+                <source src="/videos/MiPAnimation.mp4">
+            </video>
 
-    </main>
-    <footer>
-        <a href="/ContactMe.html">contact me</a>
-    </footer>
+        </main>
+        <footer>
+            <a href="/ContactMe.html">contact me</a>
+        </footer>
+    </div>
 </body>
+
 </html>
