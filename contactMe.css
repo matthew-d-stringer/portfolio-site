@@ -1,0 +1,18 @@
+h2 {
+    font-size: var(--step-0);
+}
+
+#ContactMeThrough > table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form > * {
+    display: block;
+    width: 100%;
+}
+
+table * {
+    font-family: 'Times New Roman', Courier, 'monospace';
+    font-size: var(--step--1);
+}

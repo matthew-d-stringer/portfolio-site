@@ -1,0 +1,29 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+main > pre {
+    display: flex;
+    justify-content: center;
+}
+
+#DynamicsDerivaitonSection{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#DynamicsDerivationSection > div {
+    max-width: 30%;
+}
