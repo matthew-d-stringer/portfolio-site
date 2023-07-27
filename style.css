@@ -38,7 +38,7 @@
     --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.82rem);
     
     /* Grid Sizes */
-    --grid-max-width: 90rem;
+    --grid-max-width: 80rem;
     --grid-gutter: var(--space-s-m, clamp(1.13rem, calc(0.69rem + 2.18vw), 1.88rem));
     --grid-columns: 12;
 }
@@ -56,7 +56,7 @@ h1, h2,h3,h4,h5,h6,p,a,li {
 }
 
 /* Setting main, navbar and footer as container */
-body > div {
+body main {
   max-width: var(--grid-max-width);
   padding-inline: var(--grid-gutter);
   margin-inline: auto;
@@ -65,7 +65,6 @@ body > div {
 /* Positioning and setting layout of nav */
 nav {
     display: flex;
-    flex: 1;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -75,7 +74,7 @@ nav {
     top: 0px;
     right: 0px;
     background-color: #D9D9D9;
-    width: 100%;
+    /* width: 100%; */
 
     /* padding: 0.5em 0.75em; */
     padding: 0 0.75em;
@@ -166,4 +165,16 @@ a.btn:hover {
 
 a[aria-disabled] {
     pointer-events: none;
+}
+
+@media(max-width: 580px) {
+    nav {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    nav li {
+        display: block;
+    }
 }
